@@ -9,6 +9,12 @@
 		  <artifactId>spring-webmvc</artifactId>
 		  <version>4.3.7.RELEASE</version>
 		</dependency>
+		<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+		</dependency>
 		```
 	3. 配置文件
 		* web.xml:
@@ -18,20 +24,24 @@
 				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 				 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 				 version="4.0">
+			 <!-- 部署 DispatcherServlet -->
 			<servlet>
 		<!--        两个HelloMVC必须一样，随意自己取名-->
 				<servlet-name>HelloMVC</servlet-name>
 				<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+				<!-- 表示容器再启动时立即加载servlet -->
 				<load-on-startup>1</load-on-startup>
 			</servlet>
 
 			<servlet-mapping>
 				<servlet-name>HelloMVC</servlet-name>
 				<!--        <url-pattern>*.form</url-pattern>-->
+				 <!-- 处理所有URL -->
 				<url-pattern>/</url-pattern>
 			</servlet-mapping>
 		</web-app>
 		```
+		`解释:DispatchServlet中的servlet对象HelloMVC初始化，在WEB-INF下找HelloMVC-servlet.xml配置`
 		* HelloMVC-servlet.xml:
 		```
 		<?xml version="1.0" encoding="UTF-8"?>
@@ -48,7 +58,7 @@
 			</bean>
 		</beans>
 		```
-		* 注意:如果你的取得名字是HelloMVC，那么与其对应的servlet名字必须是：HelloMVC-servlet.xml。格式是：自定义名称-servlet.xml
+		`注意:如果你的取得名字是HelloMVC，那么与其对应的servlet名字必须是：HelloMVC-servlet.xml。格式是：自定义名称-servlet.xml`
 	
 	4. 编写控制类
 		1. 在src-control下新建一个类，叫IndexController:
@@ -90,7 +100,9 @@
 		</body>
 		</html>
 		```
-	6. 配置tomcat：`add configuration->tomcat->local`->`Deployment->+->Artifact->SpringMVC:war exploded`
+	6. 配置tomcat：
+		1. `file->Project Structure->Artifacts-> + -> Web Application: Exploded -> from module`
+		2. `add configuration->tomcat->local`->`Deployment->+->Artifact->上一步的名字`
 	
 	7. 测试网址:`http://localhost:8080/SpringMVC_war_exploded/index`
 	

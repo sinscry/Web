@@ -8,7 +8,12 @@
 </head>
 <body>
 <div id="app">
-  {{ info }}
+  <h1>网站列表</h1>
+  <div
+    v-for="site in info"
+  >
+    {{ site.name }}
+  </div>
 </div>
 <script type = "text/javascript">
 new Vue({
@@ -19,17 +24,12 @@ new Vue({
     }
   },
   mounted () {
-    var param = {
-        header: {
-          "content-type": "application/xml" // 豆瓣一定不能是json
-        }
-      };
-	  this.$jsonp('https://douban.uieee.com/v2/movie/in_theaters',param).then(
-		(json) => {
-		  console.log(json)
-		}).catvh(err => {
-		  console.log(err)
-		})
+    axios
+      .get('https://raw.githubusercontent.com/jjoselon/cURL/master/JavaScript/heroes.json')
+      .then(response => (this.info = response.data.members))
+      .catch(function (error) { // 请求失败处理
+        console.log(error);
+      });
   }
 })
 </script>

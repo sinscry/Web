@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>表单测试</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+</head>
+
+
+
+<body>
+<div id="app">
+  <table class="striped">
+      <thead>
+          <tr>
+              <th>代码</th>
+              <th>股名</th>
+              <th>债名</th>
+              <th>正股价</th>
+              <th>转股价</th>
+              <th v-on:click="Direct_rt()">正转比</th>
+              <th>到期时间</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>s.id</td>
+              <td>{{s.cell.stock_nm</td>
+              <td>{{s.cell.bond_nm}</td>
+              <td>{{s.cell.sprice}</td>
+              <td>{{s.cell.convert_price }</td>
+              <td>{{(s.cell.sprice/s.cell.convert_price* 100).toFixed(2)}%</td>
+              <td>{{s.cell.maturity_dt}</td>
+          </tr>
+      </tbody>
+  </table>
+	
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: 'sinscrt',
+	message2: 'sinscry:多行文本输入',
+	checked: false,
+	checkedNames:[],
+	picked: "Sinscry",
+	selected: ''
+  }
+})
+</script>
+</body>
+</html>

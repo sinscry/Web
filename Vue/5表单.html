@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>表单测试</title>
+<script src="./js/vue.min.js"></script>
+</head>
+
+
+
+<body>
+<div id="app">
+
+	<h1>1.input 元素: </h1>
+	<input v-model="message" placeholder="编辑我...">
+	<p>消息是：{{message}}</p>
+
+	<h1>2.textarea多行文本输入</h1>
+	<p>{{message2}}</p>
+	<textarea v-model="message2" placeholder="多行文本输入..."></textarea>
+
+	<h1>3. 单个复选框：</h1>
+	<input type="checkbox" id="checkbox" v-model="checked">
+	<label for="checkbox">{{checked}}</label>
+
+	<h1>4. 多个复选框：</h1>
+	<input type="checkbox" id="sinscry" value="Sinscry" v-model="checkedNames">
+	<label for="sinscry">sinscry</label>
+	<input type="checkbox" id="google" value="Google" v-model="checkedNames">
+	<label for="google">google</label>
+	<input type="checkbox" id="taobao" value="Taobao" v-model="checkedNames">
+	<label for="taobao">taobao</label>
+	<br>
+	<span>选择的值为：{{ checkedNames }}</span>
+
+	<h1>5. 单选框</h1>
+	<input type="radio" id="sinscry2" value="Sinscry" v-model="picked">
+	<label for="sinscry2">Sinscry</label>
+	<br>
+	<input type="radio" id="google2" value="Google" v-model="picked">
+	<label for="google2">Google</label>
+	<br>
+	<span>选中的值为：{{ picked }}</span>
+
+
+	<h1>6. select列表</h1>
+	<select v-model="selected" name="fruit">
+		<option value="">选择一个网站</option>
+		<option value="www.baidu.com">Baidu</option>
+		<option value="www.google.com">Google</option>
+	</select>
+	<div id="output">
+		选择的网站是：{{selected}}
+	</div>
+
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: 'sinscrt',
+	message2: 'sinscry:多行文本输入',
+	checked: false,
+	checkedNames:[],
+	picked: "Sinscry",
+	selected: ''
+  }
+})
+</script>
+</body>
+</html>

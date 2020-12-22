@@ -4,10 +4,26 @@
 	1. 创建maven项目:`file-> new -> project -> maven -> org.apache.maven.archetypes:maven-archetype-webapp`
 	2. maven依赖:
 		```
+		<!--设置jdk版本为15-->
+		<build>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>15</source>
+						<target>15</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</build>
+		
+		
+		<!--依赖设置-->
 		<dependency>
 		  <groupId>org.springframework</groupId>
 		  <artifactId>spring-webmvc</artifactId>
-		  <version>4.3.7.RELEASE</version>
+		  <version>5.3.1</version>
 		</dependency>
 		<dependency>
             <groupId>javax.servlet</groupId>
@@ -15,6 +31,21 @@
             <version>3.0.1</version>
             <scope>provided</scope>
 		</dependency>
+		<dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.9.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.5</version>
+        </dependency>
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>1.0</version>
+        </dependency>
 		```
 	3. 配置文件
 		* web.xml:
@@ -50,7 +81,7 @@
 			   xmlns:context="http://www.springframework.org/schema/context"
 			   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 			<!--    控制器类所在的包-->
-			<context:component-scan base-package="control"/>
+			<context:component-scan base-package="controller"/>
 			<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 				<!--    /WEB-INF/page/意为页面的路径，.jsp为页面格式-->
 				<property name="prefix" value="/WEB-INF/page/"/>
@@ -61,9 +92,9 @@
 		`注意:如果你的取得名字是HelloMVC，那么与其对应的servlet名字必须是：HelloMVC-servlet.xml。格式是：自定义名称-servlet.xml`
 	
 	4. 编写控制类
-		1. 在src-control下新建一个类，叫IndexController:
+		1. 在src-controller下新建一个类，叫IndexController:
 		```
-		package control;
+		package controller;
 
 		import org.springframework.stereotype.Controller;
 		import org.springframework.ui.Model;

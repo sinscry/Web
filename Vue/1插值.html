@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>插值测试</title>
+<script src="./js/vue.min.js"></script>
+</head>
+<style>
+.class1{
+  background: #444;
+  color: #eee;
+}
+</style>
+
+
+<body>
+<div id="app">
+  1.<p>简单插值 : {{ simple_message }}</p>
+  
+  2.<p v-html="v_html"></p>
+  
+  3.<label>修改颜色</label><input type="checkbox" v-model="use"/>
+  <div v-bind:class="{'class1': use}">v-bind:class 指令判断是否使用样式</div>
+  
+  <p>4.颜色显示 : {{ use ? 'YES' : 'NO' }}</a></p>
+  <p v-if="use">now u see me</p>
+  
+  5.<a>v-model双向绑定 : <input v-model="v_model"></a>
+  <label> {{ v_model }}</label>
+  
+  
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    simple_message: "简单插值",
+	v_html:"<div>输出html代码 : v-html插值</div>",
+	use:false,
+	v_model: "前后一致"
+  }
+})
+</script>
+</body>
+</html>

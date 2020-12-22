@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件处理器测试</title>
+<script src="./js/vue.min.js"></script>
+</head>
+
+
+<body>
+<div id="app">
+
+<h1>1. 简单点击</h1>
+<button v-on:click="counter += 1">增加 1</button>
+<p>这个按钮被点击了{{ counter }} 次。</p>
+
+
+<h1>2. 函数点击</h1>
+<button v-on:click="greet">Greet</button>
+<button v-on:click="say('hi')">Say hi</button>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    counter: 0,
+	name: 'sinscry'
+  },
+  methods:{
+	  greet:function(event){
+	  // 'this'在方法里指当前Vue实例
+	  alert('Hello ' + this.name + '!')
+	  // 'event' 是原生DOM事件
+	  if(event){
+			alert(event.target.tagName)
+		  }
+	  },
+	  say:function(message){
+		alert(message)
+	  }
+  }
+})
+</script>
+</body>
+</html>

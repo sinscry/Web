@@ -49,6 +49,9 @@
 	10. 界面刷新:
 		* 不访问服务器:`this.$forceUpdate();`
 		* 访问服务器:`location.reload();`
+	11. vue<a>跳转带参数:
+		* `<a :href="'https://xueqiu.com/S/'+s.stock_id" target="_blank">`
+		* 其中s.stock_id是变量
 
 2. 问题	
 	1. axios请求出错:

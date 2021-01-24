@@ -67,6 +67,25 @@
 				String mes = EntityUtils.toString(response.getEntity());    //将返回体的信息转换为字符串
 				System.out.println(mes);
 				```
+		* axios是异步操作：
+			* 通过await async方式进行同步:
+			```
+			axios_sim_stock:async function (url) {
+				var tmp;
+				await axios.get("/axios_sim_stock", {params: {url: url}})
+				   .then(function (res) {
+					   tmp=res.data;
+				   });
+				return tmp;
+	 	    }
+			```
+			* 直接返回会是promise object(要用then):
+			```
+			this.axios_sim_stock("http://hq.sinajs.cn/list=s_sh000001").then(v=>{
+				that.sh_sz.sh_exp=v.split(",")[1];
+				that.sh_sz.sh_ch=v.split(",")[3];
+			});
+			```
 			
 			
 			

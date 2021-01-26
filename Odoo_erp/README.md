@@ -41,3 +41,8 @@
 5. 授予访问权:`sudo chmod 775 odoo-bin`
 
 6. 初始化`./odoo-bin -d testdb`./
+
+7. 使用:
+	* 确保PostgreSQL开启:`sudo /etc/init.d/postgresql start`
+	* 开启odoo-bin服务`./odoo-bin`
+	* 端口:`localhost:8069`

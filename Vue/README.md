@@ -49,6 +49,9 @@
 	10. 界面刷新:
 		* 不访问服务器:`this.$forceUpdate();`
 		* 访问服务器:`location.reload();`
+	11. vue<a>跳转带参数:
+		* `<a :href="'https://xueqiu.com/S/'+s.stock_id" target="_blank">`
+		* 其中s.stock_id是变量
 
 2. 问题	
 	1. axios请求出错:
@@ -64,6 +67,25 @@
 				String mes = EntityUtils.toString(response.getEntity());    //将返回体的信息转换为字符串
 				System.out.println(mes);
 				```
+		* axios是异步操作：
+			* 通过await async方式进行同步:
+			```
+			axios_sim_stock:async function (url) {
+				var tmp;
+				await axios.get("/axios_sim_stock", {params: {url: url}})
+				   .then(function (res) {
+					   tmp=res.data;
+				   });
+				return tmp;
+	 	    }
+			```
+			* 直接返回会是promise object(要用then):
+			```
+			this.axios_sim_stock("http://hq.sinajs.cn/list=s_sh000001").then(v=>{
+				that.sh_sz.sh_exp=v.split(",")[1];
+				that.sh_sz.sh_ch=v.split(",")[3];
+			});
+			```
 			
 			
 			

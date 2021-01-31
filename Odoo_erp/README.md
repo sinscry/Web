@@ -35,12 +35,17 @@
 		* `pip3 install -r requirements.txt`
 		
 4. 安装Wkhtmltopdf
-	* `wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb`
-	* `sudo apt install ./wkhtmltox_0.12.5-1.bionic_amd64.deb`
+	* `sudo apt-get install xvfb`
+	* `sudo apt-get install wkhtmltopdf`
+	* `sudo strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5`
+	* 打印中文:
+		1. `sudo apt-get install ttf-wqy-zenhei`
+		2. `sudo apt-get install ttf-wqy-microhei`
+	* `wkhtmltopdf http://www.baidu.com/ baidu.pdf`
 	
 5. 授予访问权:`sudo chmod 775 odoo-bin`
 
-6. 初始化`./odoo-bin -d testdb`./
+6. 初始化`./odoo-bin -d sinscry`(PostgreSQL数据库用户名)
 
 7. 使用:
 	* 确保PostgreSQL开启:`sudo /etc/init.d/postgresql start`

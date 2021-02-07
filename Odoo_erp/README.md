@@ -54,3 +54,4 @@
 	
 8. 打印模板：https://www.cnblogs.com/1314520xh/p/7268899.html
 	* 可以用万兴pdf进行修改
+	* Adobe Acrobat Pro DC 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+    <!-- 根据uid查询一个用户信息 -->
+<!--    <select id="selectUserById" parameterType="Integer"-->
+<!--            resultType="po.MyUser">-->
+<!--			select * from user where uid = #{uid}-->
+<!--		</select>-->
+    <!-- 查询所有用户信息 -->
+    <select id="selectAllUser" resultType="Convertible_bond.pojo.MyUser">
+			select usr,stock_id,stock_nm,oprice from stock_usr.usrs;
+	</select>
+    <!-- 查询所有用户名 -->
+    <select id="selectAllName" resultType="String">
+			select distinct usr from stock_usr.usrs;
+	</select>
+	<!--  根据用户信息查询数据	-->
+	<select id="selectByName" resultType="Convertible_bond.pojo.MyUser">
+			select usr,stock_id,stock_nm,oprice from stock_usr.usrs where usr = #{usr};
+	</select>
+
+	<!--  增加用户数据	-->
+	<insert id="addMYSQL" parameterType="Convertible_bond.pojo.MyUser">
+		insert into stock_usr.usrs(usr,stock_id,stock_nm,oprice) values(#{usr},#{stock_id},#{stock_nm},#{oprice})
+	</insert>
+
+	<!--     删除一个用户数据 -->
+	<delete id="delMYSQL" parameterType="Convertible_bond.pojo.MyUser">
+			delete from stock_usr.usrs where usr
+			= #{usr} and stock_id = #{stock_id}
+	</delete>
+
+
+    <!-- 添加一个用户，#{uname}为 com.mybatis.po.MyUser 的属性值 -->
+<!--    <insert id="addUser" parameterType="po.MyUser">-->
+<!--			insert into user (uid,uname,usex)-->
+<!--			values(#{uid},#{uname},#{usex})-->
+<!--		</insert>-->
+    <!--修改一个用户 -->
+<!--    <update id="updateUser" parameterType="po.MyUser">-->
+<!--			update user set uname =-->
+<!--			#{uname},usex = #{usex} where uid = #{uid}-->
+<!--		</update>-->
+
+</mapper>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns: xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>可转债</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+</head>
+<body>
+<div id="app" class="container">
+    <div class="row">
+        <div class="col s6">
+            <h1 class="row">sinscry 选股策略</h1>
+        </div>
+        <div class="col s6">
+            <h4 v-bind:class="{'green-text':sh_sz.sh_ch<0,'red-text':sh_sz.sh_ch>0}">{{sh_sz.sh_exp}} &nbsp;&nbsp;&nbsp;<font size="5">{{sh_sz.sh_ch}}</font></h4>
+            <h4 v-bind:class="{'green-text':sh_sz.sz_ch<0,'red-text':sh_sz.sz_ch>0}">{{sh_sz.sz_exp}} &nbsp;&nbsp;&nbsp;<font size="5">{{sh_sz.sz_ch}}</font></h4>
+        </div>
+    </div>
+    <div class="row">
+        <a class="waves-effect waves-light teal lighten-1 btn" v-on:click="show_lists['convert']=!show_lists['convert'];if(show_lists['convert'])Request_convert();">可转债</a>
+        <a class="waves-effect waves-light light-blue darken-1 btn" v-on:click="show_lists['usr_stocks_list']=!show_lists['usr_stocks_list'];">个人选股</a>
+    </div>
+    <div class="row">
+        <div class="col s6" v-if="show_lists['convert']">
+            <p>选股逻辑:连续30交易日正转比小于70%，可转债会回售</p>
+            <table class="striped highlight">
+              <thead class="teal lighten-1">
+                  <tr>
+                      <th >代码</th>
+                      <th >股名</th>
+                      <th>债名</th>
+                      <th>正股价</th>
+                      <th>转股价</th>
+                      <th v-on:click="Direct_rt()">正转比</th>
+                      <th>到期时间</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr v-for="s in info">
+                      <td>{{s.cell.stock_id}}</td>
+                      <td><a :href="'https://xueqiu.com/S/'+s.cell.stock_id" target="_blank" class="blue-grey-text">{{s.cell.stock_nm}}</a></td>
+                      <td>{{s.cell.bond_nm}}</td>
+                      <td>{{s.cell.sprice}}</td>
+                      <td>{{s.cell.convert_price }}</td>
+                      <td>{{(s.cell.sprice/s.cell.convert_price* 100).toFixed(2)}}%</td>
+                      <td>{{s.cell.maturity_dt}}</td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+        <div class="col s6" v-if="show_lists['usr_stocks_list']">
+            <p>当前选股</p>
+            <table class="striped highlight" v-for="usr in usr_list">
+                <thead class=" light-blue darken-1">
+                    <tr>
+                        <th class="white-text" v-on:click="usr.click=-usr.click;simple_refresh();">{{usr.name}}</th>
+                        <th>代码</th>
+                        <th>股名</th>
+                        <th>现价</th>
+                        <th>涨跌幅</th>
+                        <th>购入价</th>
+                        <th>盈亏</th>
+                        <th>拟出价(盈3%)</th>
+                        <th>当日最高</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="s in usr.stock_list">
+                        <td><button v-if="usr.click==-1" v-on:click="axios_del_stock(usr.name,s.stock_id)">删除</button></td>
+                        <td>{{s.stock_id}}</td>
+                        <td><a :href="'https://xueqiu.com/S/'+s.stock_id" target="_blank" class="blue-grey-text">{{s.stock_nm}}</a></td>
+                        <td>{{s.sprice}}</td>
+                        <td v-bind:class="{'green-text':(s.sprice-s.yprice)<0,'red-text':(s.sprice-s.yprice)>0}">{{((s.sprice-s.yprice)/s.yprice*100).toFixed(2)}}%</td>
+                        <td>{{s.oprice}}</td>
+                        <td v-bind:class="{'green-text':(s.sprice-s.oprice)<0,'red-text':(s.sprice-s.oprice)>0}">{{((s.sprice-s.oprice)/s.oprice*100).toFixed(2)}}%</td>
+                        <td>{{(s.oprice*1.03).toFixed(3)}}</td>
+                        <td>{{s.hprice}}</td>
+                    </tr>
+                    <tr v-if="usr.click==-1">
+                        <td><button v-on:click="axios_add_stock(usr.name,usr.add_stock_id,usr.add_oprice)">添加</button></td>
+                        <td><input v-model="usr.add_stock_id"></td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><input v-model="usr.add_oprice"></td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://data.eastmoney.com/js_001/load_table_data_pc.js"></script>
+<script type = "text/javascript">
+new Vue({
+  el: '#app',
+  data () {
+    return {
+        //承载可转债数据
+        info: null,
+        //代表排序顺序
+        dr_s: 1,
+        //承载用户数据
+        usr_list:null,
+        //选择默认展示页面
+        show_lists:{'convert':true,'usr_stocks_list':true},
+        //大盘指数
+        sh_sz:{'sh_exp':null,'sh_ch':null,'sz_exp':null,'sz_ch':null}
+    }
+  }
+  ,
+   methods:{
+        Request_convert:function (){
+            axios
+                .get('/stock_json')
+                .then(response => (this.info = response.data.rows, this.Direct_rt())
+                )
+                .catch(function (error) { // 请求失败处理
+                    console.log(error);
+                });
+        },
+
+
+        //获取可转债数据后排序算法:用冒泡排序
+        Direct_rt:function (){
+            for (var i=0;i<this.info.length-1;i++){
+                for(var j=0;j<this.info.length-1-i;j++){
+                    var comp = this.info[j].cell.convert_price/this.info[j].cell.sprice<this.info[j+1].cell.convert_price/this.info[j+1].cell.sprice;
+                    //前面是降序后面是降序
+                    if ((comp && this.dr_s==1)||(comp==false && this.dr_s!=1)){
+                        var tmp = this.info[j];
+                        this.info[j]=this.info[j+1];
+                        this.info[j+1]=tmp;
+                    }
+                }
+            }
+            this.dr_s = -this.dr_s;
+            this.$forceUpdate();
+        },
+       //添加是否编辑模式
+       Add_usr_option:function (){
+            for(var i in this.usr_list){
+                this.usr_list[i].click=1;
+                this.usr_list[i].add_stock_id="sh";
+                this.usr_list[i].add_oprice=0;
+            }
+       },
+       //刷新界面
+       simple_refresh:function (){
+            // console.log("simple_refresh");
+           this.$forceUpdate();
+       },
+       //增加数据
+       axios_add_stock:function (name,stock_id,oprice){
+            if (oprice<0) alert("购入价不能小于0");
+            else{
+                axios.post("/axios_add_stock",{
+                    name:name,stock_id:stock_id,oprice:oprice
+                }).then(function (res){
+                    alert(res.data);
+                    if (res.data=="添加成功") location.reload();
+                })
+            }
+       },
+       //减少数据
+       axios_del_stock:function (name,stock_id){
+           axios.post("/axios_del_stock",{
+               name:name,stock_id:stock_id,oprice: 0.0
+           }).then(function (res){
+               alert(res.data);
+               if (res.data=="删除成功") location.reload();
+           })
+       },
+
+       //单纯获取数据
+       axios_sim_stock:async function (url) {
+            var tmp;
+           await axios.get("/axios_sim_stock", {params: {url: url}})
+               .then(function (res) {
+                   tmp=res.data;
+               });
+           return tmp;
+       }
+
+   }
+  ,mounted () {
+      var that=this;
+
+      //加载可转债信息;
+      if (this.show_lists['convert']) this.Request_convert();
+    //对用户信息进行处理
+    axios
+        .get('/usr_json')
+        .then(response => (
+                this.usr_list = response.data,
+                //添加属性
+                this.Add_usr_option()
+            )
+        )
+        .catch(function (error) {
+            console.log(error);
+        });
+    //获取大盘指数
+    this.axios_sim_stock("http://hq.sinajs.cn/list=s_sh000001").then(v=>{
+        that.sh_sz.sh_exp=v.split(",")[1];
+        that.sh_sz.sh_ch=v.split(",")[3];
+    });
+    this.axios_sim_stock("http://hq.sinajs.cn/list=s_sz399001").then(v=>{
+        that.sh_sz.sz_exp=v.split(",")[1];
+        that.sh_sz.sz_ch=v.split(",")[3];
+    });
+
+  }
+})
+
+
+</script>
+</body>
+</html>

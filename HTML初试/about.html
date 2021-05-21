@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>花之星</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top"  role="navigation"style="">
+	<div class="container">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#" style="margin-top: 10px;">花之星</a>
+    </div>
+    <div class="col-md-offset-8">
+        <ul class="nav navbar-nav" style="margin-top: 10px;">
+            <li class=""><a href="index.html">主页</a></li>
+            <li class="active"><a href="about.html">关于</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    分类 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="0.html">橄榄树</a></li>
+                    <li><a href="#">弥勒佛树</a></li>
+                    <li><a href="#">嘉宝果树</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">分离的链接</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">另一个分离的链接</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><span class="glyphicon glyphicon-earphone"></span>13802644060</a></li>
+        </ul>
+    </div>
+	</div>
+</nav>
+
+<div class="jumbotron text-center" style="margin-bottom:0; margin-top: 50px;" >
+  <h1>欢迎来到花之星网站</h1>
+  <p>当前为测试网页</p>
+</div>
+
+
+<div id="myCarousel" class="carousel slide">
+	<!-- 轮播（Carousel）指标 -->
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+	</ol>
+	<!-- 轮播（Carousel）项目 -->
+	<div class="carousel-inner"  align="center" >
+		<div class="item active">
+            <a href="0.html"><img src="./img/1.jpg" alt="First slide"></a>
+            <div class="carousel-caption">橄榄树</div>
+		</div>
+		<div class="item">
+            <a href="1.html"><img src="./img/2.jpg" alt="Second slide"></a>
+			<div class="carousel-caption">弥勒佛树</div>
+		</div>
+		<div class="item">
+			<img src="./img/3.jpg" alt="Third slide">
+			<div class="carousel-caption">嘉宝果树</div>
+		</div>
+	</div>
+	<!-- 轮播（Carousel）导航 -->
+	<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
+<script>
+	$(function(){
+		// 初始化轮播
+		$(".start-slide").click(function(){
+			$("#myCarousel").carousel('cycle');
+		});
+		// 停止轮播
+		$(".pause-slide").click(function(){
+			$("#myCarousel").carousel('pause');
+		});
+		// 循环轮播到上一个项目
+		$(".prev-slide").click(function(){
+			$("#myCarousel").carousel('prev');
+		});
+		// 循环轮播到下一个项目
+		$(".next-slide").click(function(){
+			$("#myCarousel").carousel('next');
+		});
+		// 循环轮播到某个特定的帧
+		$(".slide-one").click(function(){
+			$("#myCarousel").carousel(0);
+		});
+		$(".slide-two").click(function(){
+			$("#myCarousel").carousel(1);
+		});
+		$(".slide-three").click(function(){
+			$("#myCarousel").carousel(2);
+		});
+	});
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>关于花之星</h2>
+      <h5>公司标志<div class="fakeimg"><img src="img/bz.jpg"></div></h5>
+      <p>花之星实业有限公司现已拥有三个子公司：花之星温室工程有限公司、花之星设备有限公司、花之星兰花有限公司。</p>
+      <h3>主营业务</h3>
+      <p>花卉树木</p>
+      <ul class="nav nav-pills nav-stacked">
+        <li class=""><a href="0.html">橄榄树</a></li>
+        <li><a href="#">弥勒佛树</a></li>
+        <li><a href="#">嘉宝果树</a></li>
+      </ul>
+      <hr class="hidden-sm hidden-md hidden-lg">
+    </div>
+    <div class="col-sm-8">
+      <h2>花之星兰花有限公司</h2>
+      <h5>花之星兰花有限公司是中国目前具有规模的兰花企业之一</h5>
+        <div class="fakeimg"><a href="img/maps.jpg" target="_blank"><img src="img/0map.jpg"></a></div>
+      <p>是集蝴蝶兰(Phalaenopsis orchid)科研、生产、销售于 一体的企业，专业种植以蝴蝶兰花为主的系列兰花产品,拥有包括湛江、顺德、从化等 地共3万平方米温室生产基地,年批量生产蝴蝶兰艺术组盘10万盆，年产蝴蝶开花株60万枝和大中小苗100万株。欢迎广大兰花爱好者和花商参观、选购。</p>
+      <address>
+          <strong>公司地址：</strong><br>
+          广东省，佛山市 花卉大道51号
+      </address>
+      <br>
+      <h2>花之星温室工程有限公司</h2>
+      <h5>中国南方规模最大的温室企业</h5>
+      <div class="fakeimg"><img src="img/ws.jpg"></div>
+      <p>公司在花卉世界兰花科技园区设有自己的温室科研实验示范基地。另设有专门温室资材超市，所经销的各种设备设施均为本公司生产或厂家定点直销，质量保证、价格合理。公司秉承不断追求完美的服务精神，拥有雄厚的技术力量，成熟的施工经验、精良的产品；利用高效率的现代化管理方式，将开发与引进相结合，不断开发新产品，来提高温室质量，降低温室生产成本，做到技术专业化，生产工艺、品质要求标准化。公司曾承建的温室已遍及到广东、江苏、浙江、上海、贵州、海南、福建、湖南等地。
+欢迎新老客户到公司参观洽谈，我们愿与您真诚合作！</p>
+      <address>
+          <strong>公司地址：</strong><br>
+          广东省，佛山市 顺德陈村石洲工业区1号
+      </address>
+    </div>
+  </div>
+</div>
+
+
+<footer class="page-footer #212121 grey darken-4">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">花之星</h5>
+                <p class="grey-text text-lighten-4">花之星兰花有限公司是中国目前具有规模的花卉树木企业</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">联系</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!"><span class="glyphicon glyphicon-user"></span>负责人:郑小姐</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!"><span class="glyphicon glyphicon-tree-conifer"></span>广东省 佛山市 花卉大道51号</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!"><span class="glyphicon glyphicon-phone-alt"></span>13802644060</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2019 Copyright 文本
+            <a class="grey-text text-lighten-4 right" href="#!">更多链接</a>
+            </div>
+          </div>
+</footer>
+
+</body>
+</html>

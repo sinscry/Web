@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+    <title>花之星</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<!--    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />-->
+  <!-- Compiled and minified CSS -->
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top"  role="navigation">
+	<div class="container">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#" style="margin-top: 10px;">花之星</a>
+    </div>
+    <div class="col-md-offset-8">
+        <ul class="nav navbar-nav" style="margin-top: 10px;">
+            <li class="active"><a href="index.html">主页</a></li>
+            <li class=""><a href="about.html">关于</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    分类 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="0.html">橄榄树</a></li>
+                    <li><a href="1.html">弥勒佛树</a></li>
+                    <li><a href="2.html">嘉宝果树</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">分离的链接</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">另一个分离的链接</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><span class="glyphicon glyphicon-earphone"></span>13802644060</a></li>
+        </ul>
+    </div>
+	</div>
+</nav>
+
+
+<!--  <nav>-->
+<!--    <div class="nav-wrapper">-->
+<!--      <a href="#!" class="brand-logo">Logo</a>-->
+<!--      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>-->
+<!--      <ul class="right hide-on-med-and-down">-->
+<!--        <li class="active"><a href="sass.html">Sass</a></li>-->
+<!--        <li><a href="badges.html">组件</a></li>-->
+<!--        <li><a href="collapsible.html">Javascript</a></li>-->
+<!--        <li><a href="mobile.html">手机</a></li>-->
+<!--      </ul>-->
+<!--      <ul class="side-nav" id="mobile-demo">-->
+<!--        <li><a href="sass.html">Sass</a></li>-->
+<!--        <li><a href="badges.html">组件</a></li>-->
+<!--        <li><a href="collapsible.html">Javascript</a></li>-->
+<!--        <li><a href="mobile.html">手机</a></li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </nav>-->
+
+
+<div class="jumbotron text-center" style="margin-bottom:0; margin-top: 50px;" >
+  <h1>欢迎来到花之星网站</h1>
+  <p>松树千年朽，槿花一日歇。毕竟共虚空，何须夸岁月。——白居易《赠王山人》</p>
+</div>
+
+
+
+
+
+
+
+
+
+<div id="myCarousel" class="carousel slide">
+	<!-- 轮播（Carousel）指标 -->
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+	</ol>
+	<!-- 轮播（Carousel）项目 -->
+	<div class="carousel-inner"  align="center" >
+		<div class="item active">
+            <a href="0.html"><img src="./img/1.jpg" alt="First slide"></a>
+            <div class="carousel-caption">橄榄树</div>
+		</div>
+		<div class="item">
+            <a href="1.html"><img src="./img/2.jpg" alt="Second slide"></a>
+			<div class="carousel-caption">弥勒佛树</div>
+		</div>
+		<div class="item">
+			<img src="./img/3.jpg" alt="Third slide">
+			<div class="carousel-caption">嘉宝果树</div>
+		</div>
+	</div>
+	<!-- 轮播（Carousel）导航 -->
+	<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
+<script>
+	$(function(){
+		// 初始化轮播
+		$(".start-slide").click(function(){
+			$("#myCarousel").carousel('cycle');
+		});
+		// 停止轮播
+		$(".pause-slide").click(function(){
+			$("#myCarousel").carousel('pause');
+		});
+		// 循环轮播到上一个项目
+		$(".prev-slide").click(function(){
+			$("#myCarousel").carousel('prev');
+		});
+		// 循环轮播到下一个项目
+		$(".next-slide").click(function(){
+			$("#myCarousel").carousel('next');
+		});
+		// 循环轮播到某个特定的帧
+		$(".slide-one").click(function(){
+			$("#myCarousel").carousel(0);
+		});
+		$(".slide-two").click(function(){
+			$("#myCarousel").carousel(1);
+		});
+		$(".slide-three").click(function(){
+			$("#myCarousel").carousel(2);
+		});
+	});
+</script>
+
+<div class="container">
+    <div class="row" style="margin-top:40px;">
+        <h4><strong class="col-sm-11" style="margin-top: 20px;">橄榄预览</strong></h4>
+            <a href="0.html" class="col-sm-1 hidden-sm"style="margin-top: 25px;color: grey;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>更多</a>
+        <ul class="list-unstyled" style="">
+            <li class="col-sm-4"><a class="thumbnail"><img src="img/ganlan/0.jpg"></a></li>
+            <li class="col-sm-8"><a class="thumbnail"><img src="img/ganlan/1.jpg"></a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div id="myCarousel" class="carousel slide" style="margin-top: 100px;">
+	<!-- 轮播（Carousel）项目 -->
+	<div class="carousel-inner"  align="center" >
+		<div class="item active">
+            <a href="0.html"><img src="./img/mlf/mlf.jpg"></a>
+            <div class="carousel-caption">弥勒佛树</div>
+		</div>
+    </div></div>
+
+<div class="container" style="margin-top: 40px;margin-bottom:40px;">
+    <div class="row" style="margin-top:20px;margin-bottom:20px;">
+        <h4><strong class="col-sm-11" style="margin-top: 20px;">弥勒佛树预览</strong></h4>
+
+            <a href="0.html" class="col-sm-1 hidden-sm"style="margin-top: 25px;color:grey;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>更多</a>
+        <ul class="list-unstyled" style="">
+            <li class="col-sm-3"><a class="thumbnail"><img src="img/mlf/0.jpg"></a></li>
+            <li class="col-sm-2"><a class="thumbnail"><img src="img/mlf/1.jpg"></a></li>
+            <li class="col-sm-2"><a class="thumbnail"><img src="img/mlf/2.jpg"></a></li>
+            <li class="col-sm-5"><a class="thumbnail"><img src="img/mlf/3.jpg"></a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div id="myCarousel" class="carousel slide" style="margin-top: 100px;">
+	<!-- 轮播（Carousel）项目 -->
+	<div class="carousel-inner"  align="center" >
+		<div class="item active">
+            <a href="0.html"><img src="./img/jiabao/jiabao.jpg"></a>
+            <div class="carousel-caption">嘉宝果树</div>
+		</div>
+    </div></div>
+
+<div class="container" style="margin-top: 40px;margin-bottom:40px;">
+    <div class="row" style="margin-top:20px;margin-bottom:20px;">
+        <h4><strong class="col-sm-11" style="margin-top: 20px;">嘉宝果树预览</strong></h4>
+
+            <a href="0.html" class="col-sm-1 hidden-sm"style="margin-top: 25px;color:grey;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>更多</a>
+        <ul class="list-unstyled" style="">
+            <li class="col-sm-3"><a class="thumbnail"><img src="img/jiabao/0.jpg"></a></li>
+            <li class="col-sm-3"><a class="thumbnail"><img src="img/jiabao/1.jpg"></a></li>
+            <li class="col-sm-2"><a class="thumbnail"><img src="img/jiabao/2.jpg"></a></li>
+            <li class="col-sm-2"><a class="thumbnail"><img src="img/jiabao/3.jpg"></a></li>
+            <li class="col-sm-2"><a class="thumbnail"><img src="img/jiabao/4.jpg"></a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+  <footer class="page-footer #212121 grey darken-4">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">花之星</h5>
+                <p class="grey-text text-lighten-4">花之星兰花有限公司是中国目前具有规模的花卉树木企业</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">联系</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!"><span class="glyphicon glyphicon-user"></span>负责人:郑小姐</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!"><span class="glyphicon glyphicon-tree-conifer"></span>广东省 佛山市 花卉大道51号</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!"><span class="glyphicon glyphicon-phone-alt"></span>13802644060</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2019 Copyright 文本
+            <a class="grey-text text-lighten-4 right" href="#!">更多链接</a>
+            </div>
+          </div>
+        </footer>
+
+</body>
+</html>
